@@ -1,0 +1,11 @@
+{% extends 'employee/base.html' %}
+
+{% block content %}
+    <h2 class="text-center mt-3">Register Agency</h2>
+    <form method="POST"
+          class="col-xxl-3 col-xl-4 col-lg-5 col-md-6 col-11 mx-auto my-4 p-4 border rounded shadow needs-validation">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Register</button>
+    </form>
+{% endblock %}

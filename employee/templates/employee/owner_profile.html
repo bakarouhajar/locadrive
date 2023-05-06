@@ -1,0 +1,54 @@
+{% extends 'employee/base.html' %}
+
+{% block content %}
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header bg-secondary text-white">
+                        <h4 class="card-title mb-0">Owner Profile</h4>
+                    </div>
+                    <div class="card-body text-center">
+                        {% if user.picture.url %}
+                            <img src="{{ user.picture.url }}" class="img-fluid rounded-circle mb-3"
+                                 alt="Profile Picture">
+                        {% else %}
+                            <i class="fa fa-user-circle fa-5x text-muted mb-3"></i>
+                        {% endif %}
+                        <h5 class="card-text">{{ user.username }}</h5>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><strong>Full Name:</strong> {{ user.get_full_name }}</li>
+                        <li class="list-group-item"><strong>Email:</strong> {{ user.email }}</li>
+                        <li class="list-group-item"><strong>Phone:</strong> {{ user.phone }}</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header bg-secondary text-white">
+                        <h4 class="card-title mb-0">Agency Info</h4>
+                    </div>
+
+                    {% if agency %}
+
+
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><strong>Name:</strong> {{ agency.name }}</li>
+                            <li class="list-group-item"><strong>Email:</strong> {{ agency.email }}</li>
+                            <li class="list-group-item"><strong>Phone:</strong> {{ agency.phone }}</li>
+                            <li class="list-group-item"><strong>Address:</strong> {{ agency.address }}</li>
+                            <li class="list-group-item"><strong>City:</strong> {{ agency.city }}</li>
+                        </ul>
+                    {% else %}
+                        <h4 class="card-title mb-0">Click bellow to register Agency</h4>
+                        <div class="col-md-6">
+                            <a href="{% url 'employee:agency' %}" class="btn btn-secondary">Add agency</a>
+                        </div>
+
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

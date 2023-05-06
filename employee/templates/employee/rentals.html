@@ -1,0 +1,118 @@
+{% extends 'employee/base.html' %}
+{% load static %}
+{% block content %}
+    <!-- load jQuery library -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Bootstrap JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.min.js"></script>
+    <h1>Reservations</h1>
+    {% if rentals %}
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Car</th>
+                <th>Client</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Cost (MAD)</th>
+                <th>Paid</th>
+                <th>Confirmed</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for rental in rentals %}
+                <tr>
+                    <td>{{ rental.car }}</td>
+                    <td>  <a href="{% url 'employee:detail_client' rental.client.id %}">{{ rental.client.username }} </a></td>
+
+                    <td>{{ rental.start_date }}</td>
+                    <td>{{ rental.end_date }}</td>
+                    <td>{{ rental.rental_price }}</td>
+                    <td>
+                        <input type="checkbox" name="paid" class="paid-checkbox"
+                               data-rental-id="{{ rental.id }}" {% if rental.paid %}checked{% endif %}
+                               onclick="return confirm('Are you sure you want to update payment status?');">
+                    </td>
+                    <td>
+
+                        <input type="checkbox" name="confirmed" class="confirmed-checkbox"
+                               data-rental-id="{{ rental.id }}" {% if rental.confirmed %}checked{% endif %}
+                               onclick="return confirm('Are you sure you want to update confirmation status?');">
+                    </td>
+                    <td>
+                        <a href="{% url 'employee:detail_car' rental.car.id %}">
+                            <img src="{% static 'home/icons/iteration.png' %}">
+                        </a>
+                    </td>
+                </tr>
+                <div class="modal fade" id="clientModal{{ rental.client.id }}" tabindex="-1" role="dialog"
+                     aria-labelledby="clientModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="clientModalLabel">{{ rental.client }}</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <p>Name: {{ rental.client.name }}</p>
+                                <p>Phone: {{ rental.client.phone }}</p>
+                                <p>Email: {{ rental.client.email }}</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+            </tbody>
+        </table>
+
+
+    {% else %}
+        <p>No rentals found.</p>
+    {% endif %}
+    <script>
+        $(document).ready(function () {
+            $('.paid-checkbox, .confirmed-checkbox').change(function () {
+                var checkbox = $(this);
+                var rentalId = checkbox.data('rental-id');
+                var isPaid = $('.paid-checkbox[data-rental-id="' + rentalId + '"]').prop('checked');
+                var isConfirmed = $('.confirmed-checkbox[data-rental-id="' + rentalId + '"]').prop('checked');
+
+                $.ajax({
+                    url: '/employee/update_rental/',
+                    type: 'POST',
+                    data: {
+                        'rental_id': rentalId,
+                        'is_paid': isPaid,
+                        'is_confirmed': isConfirmed,
+                        'csrfmiddlewaretoken': '{{ csrf_token }}'
+                    },
+                    success: function (response) {
+                        console.log(response);
+                    }
+                });
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('.client-link').click(function () {
+                var clientId = $(this).data('client-id');
+                $.ajax({
+                    url: '/employee/detail_client/' + clientId + '/',
+                    type: 'GET',
+                    success: function (response) {
+                        $('#clientModal .modal-body').html(response);
+                        $('#clientModal').modal('show');
+                    }
+                });
+            });
+        });
+    </script>
+
+{% endblock %}

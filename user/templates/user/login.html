@@ -1,0 +1,64 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block title %}login{% endblock %}
+{% block content %}
+<div style="background: radial-gradient(circle, #0077FF , #FFFFFF);">
+    <pre>   </pre>
+    <h2 class="text-center " style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
+        S'authentifier</h2>
+    <div class="container-fluid col-xxl-2 col-xl-3 col-lg-4 col-md-5 col-sm-6 col-10 mt-4 p-4 border rounded shadow bg-light">
+        <img src="{% static 'user/images/icon.png' %}" alt="user" width="70" class="d-block mx-auto mb-4">
+        <form method="post" class="mx-auto needs-validation" novalidate>
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="username" class="form-label"
+                    style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Nom
+                    d'utilisateur</label>
+                <input type="text" name="username" id="username" required class="form-control"
+                    placeholder="Enter your username">
+                <div class="invalid-feedback">
+                    Username is required.
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label"
+                    style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Mot de
+                    passe</label>
+                <input type="password" name="password" id="password" required class="form-control"
+                    placeholder="Enter your password">
+                <div class="invalid-feedback">
+                    Password is required.
+                </div>
+            </div>
+            <div class="d-grid mt-3">
+                <button type="submit" class="btn btn-primary" style="background-color: blue;"><b>Connexion</b></button>
+            </div>
+        </form>
+    </div>
+    <pre>   </pre>
+</div>
+<script>
+    const form = document.querySelector('.needs-validation')
+    form.addEventListener('submit', event => {
+        if (!form.checkValidity()) {
+            event.preventDefault()
+            event.stopPropagation()
+        }
+
+        form.classList.add('was-validated')
+    }, false)
+</script>
+{% endblock %}
+{% block js %}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.17/dist/sweetalert2.all.min.js"
+    integrity="sha256-RhRrbx+dLJ7yhikmlbEyQjEaFMSutv6AzLv3m6mQ6PQ=" crossorigin="anonymous"></script>
+{% if error_message %}
+<script>
+    Swal.fire({
+        icon: 'error',
+        confirmButtonColor: '#6c757d',
+        text: '{{ error_message }}',
+    });
+</script>
+{% endif %}
+{% endblock %}

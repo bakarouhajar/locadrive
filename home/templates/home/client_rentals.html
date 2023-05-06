@@ -1,0 +1,50 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block title %}Rents{% endblock %}
+{% block content %}
+    <h1 style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; text-align: center; color: gray;">Mes Locations</h1>
+    {% if rentals %}
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Car</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Total Cost</th>
+                <th>Paid</th>
+                <th>Confirmed</th>
+                <th>Actions </th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for rental in rentals %}
+                <tr>
+                    <td>{{ rental.car.car_model }}</td>
+                    <td>{{ rental.start_date }}</td>
+                    <td>{{ rental.end_date }}</td>
+                    <td>{{ rental.rental_price }}</td>
+                    <td>
+                        <input type="checkbox" name="paid" class="paid-checkbox" disabled
+                               data-rental-id="{{ rental.id }}" {% if rental.paid %}checked{% endif %}
+                        >
+                    </td>
+                    <td>
+
+                        <input type="checkbox" name="confirmed" class="confirmed-checkbox" disabled
+                               data-rental-id="{{ rental.id }}" {% if rental.confirmed %}checked{% endif %}
+                        >
+                    </td>
+                    <td>
+                        <a href="{% url 'home:car_details' rental.car.id %}">
+                            <img src="{% static 'home/icons/iteration.png' %}" >
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p style="color: brown; text-align: center; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-size: larger;">Pas de locations jusqu'à l'instant.</p>
+    {% endif %}
+
+{% endblock %}
