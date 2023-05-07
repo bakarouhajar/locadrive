@@ -81,8 +81,8 @@
         <div class="row">
             {% for car in cars %}
                 <div class="col-md-4">
-                    <div class="card mb-4">
-                        <img class="card-img-top" src="{{ car.picture.url }}" width="400px" height="400px"
+                    <div class="card mb-4" style="height: 70%; width: 70%; padding-left: 30px;">
+                        <img class="card-img-top" src="{{ car.picture.url }}" width="50px" height="400px"
                              alt="Car Picture">
                         <div class="card-body">
                             <h5 class="card-title">{{ car.car_model }}</h5>
@@ -96,7 +96,7 @@
                                 {% csrf_token %}
                                 <input type="hidden" name="from_date" value="{{ request.POST.from_date }}">
                                 <input type="hidden" name="to_date" value="{{ request.POST.to_date }}">
-                                <button class="btn btn-danger " type="submit">Rent me :)</button>
+                                <button class="btn btn-danger " type="submit">Louer</button>
                             {% else %}
                                 <a class="btn btn-danger" href="{% url 'user:login' %}" role="button">Login first</a>
                             {% endif %}
