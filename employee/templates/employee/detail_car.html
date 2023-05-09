@@ -1,61 +1,62 @@
 {% extends 'employee/base.html' %}
 
 {% block content %}
-  <div class="container-fluid">
-    <div class="row mt-4">
-      <div class="col-md-8 offset-md-2">
-        <div class="card">
-          <div class="card-header">
-            <h1 class="text-center mb-0">{{ car.registration_number }}</h1>
-          </div>
-          <div class="card-body">
-            <div class="row">
-              <div class="col-md-6">
-                <img src="{{ car.picture.url }}" alt="{{ car.registration_number }}" class="img-fluid rounded mb-3">
-                <h3>Car Details</h3>
-                <ul class="list-group">
-                  <li class="list-group-item"><strong>Model:</strong> {{ car.car_model }}</li>
-                  <li class="list-group-item"><strong>Year:</strong> {{ car.year }}</li>
-                  <li class="list-group-item"><strong>Doors:</strong> {{ car.doors }}</li>
-                  <li class="list-group-item"><strong>Seats:</strong> {{ car.seats }}</li>
-                  <li class="list-group-item"><strong>AC:</strong> {{ car.ac|yesno:"Yes,No" }}</li>
-                  <li class="list-group-item"><strong>Gearbox:</strong> {{ car.get_gearbox_display }}</li>
-                  <li class="list-group-item"><strong>Fuel:</strong> {{ car.get_fuel_display }}</li>
-                </ul>
-              </div>
-              <div class="col-md-6">
-                <h3>Actions</h3>
-                <a href="{% url 'employee:update_car' car.id %}" class="btn btn-primary mb-2">Edit</a>
-               <a href="{% url 'employee:delete_car' car.id %}" class="btn btn-danger mb-2">Delete</a>
-              </div>
+<div class="container-fluid">
+  <div class="row mt-4">
+    <div class="col-md-8 offset-md-2">
+      <div class="card">
+        <div class="card-header">
+          <h1 class="text-center mb-0">{{ car.registration_number }}</h1>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-6">
+              <img src="{{ car.picture.url }}" alt="{{ car.registration_number }}" class="img-fluid rounded mb-3">
+              <h3>Car Details</h3>
+              <ul class="list-group">
+                <li class="list-group-item"><strong>Modèle :</strong> {{ car.car_model }}</li>
+                <li class="list-group-item"><strong>Annéz:</strong> {{ car.year }}</li>
+                <li class="list-group-item"><strong>Nombre de portes:</strong> {{ car.doors }}</li>
+                <li class="list-group-item"><strong>Nombre de places:</strong> {{ car.seats }}</li>
+                <li class="list-group-item"><strong>Climatisation:</strong> {{ car.ac|yesno:"Yes,No" }}</li>
+                <li class="list-group-item"><strong>Boîte de vitesses:</strong> {{ car.get_gearbox_display }}</li>
+                <li class="list-group-item"><strong>Carburant:</strong> {{ car.get_fuel_display }}</li>
+              </ul>
+            </div>
+            <div class="col-md-6">
+              <h3>Gérer</h3>
+              <a href="{% url 'employee:update_car' car.id %}" class="btn btn-primary mb-2">Modifier</a>
+              <a href="{% url 'employee:delete_car' car.id %}" class="btn btn-danger mb-2">Supprimer</a>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+</div>
 
-  <!-- Delete Car Modal -->
-  <div class="modal fade" id="deleteCarModal" tabindex="-1" role="dialog" aria-labelledby="deleteCarModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="deleteCarModalLabel">Confirm Delete</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          Are you sure you want to delete this car?
-        </div>
-        <div class="modal-footer">
-          <form action="{% url 'employee:delete_car' car.id %}" method="POST">
-            {% csrf_token %}
-            <button type="submit" class="btn btn-danger">Delete</button>
-          </form>
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-        </div>
+<!-- Delete Car Modal -->
+<div class="modal fade" id="deleteCarModal" tabindex="-1" role="dialog" aria-labelledby="deleteCarModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteCarModalLabel">Valider</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Confirmer la suppression !
+      </div>
+      <div class="modal-footer">
+        <form action="{% url 'employee:delete_car' car.id %}" method="POST">
+          {% csrf_token %}
+          <button type="submit" class="btn btn-danger">Supprimer</button>
+        </form>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
       </div>
     </div>
   </div>
+</div>
 {% endblock %}

@@ -6,7 +6,7 @@
             <div class="col-md-8 offset-md-2">
                 <div class="card">
                     <div class="card-header">
-                        <h1 class="text-center mb-0">Username: {{ client.username }}</h1>
+                        <h1 class="text-center mb-0">Nom d'utilisateur: {{ client.username }}</h1>
                     </div>
                     <div class="card-body">
                         <div class="row">
@@ -16,15 +16,15 @@
                             </div>
                             <div class="col-md-8">
                                 <ul class="list-group">
-                                    <li class="list-group-item"><strong>First Name:</strong> {{ client.first_name }}
+                                    <li class="list-group-item"><strong>Nom:</strong> {{ client.first_name }}
                                     </li>
-                                    <li class="list-group-item"><strong>Last Name:</strong> {{ client.last_name }}</li>
+                                    <li class="list-group-item"><strong>Prénom:</strong> {{ client.last_name }}</li>
                                     <li class="list-group-item"><strong>Email:</strong> <a
                                             href="mailto:{{ client.email }}">{{ client.email }}</a></li>
-                                    <li class="list-group-item"><strong>Phone:</strong> <a
+                                    <li class="list-group-item"><strong>Téléphone:</strong> <a
                                             href="tel:{{ client.phone }}">{{ client.phone }}</a></li>
                                     <li class="list-group-item"><strong>WhatsApp:</strong> <a
-                                            href="https://wa.me/{{ client.phone }}">Send Message</a></li>
+                                            href="https://wa.me/{{ client.phone }}">Envoyer un message</a></li>
                                 </ul>
                             </div>
                         </div>

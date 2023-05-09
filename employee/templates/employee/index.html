@@ -5,28 +5,27 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">Owner Dashboard</div>
+                    <div class="card-header">Table de bord</div>
 
                     <div class="card-body">
-                        <p>Welcome {{ user.first_name }} {{ user.last_name }}!</p>
-                        <p>Here you can manage your Cars and view your rental income.</p>
+                        <p>Bienvenue  {{ user.first_name }} {{ user.last_name }}!</p>
+                        <p>Gérer votre business.</p>
                         {% if  not user.agency %}
-                            <p>But first, you need to <a href="{% url 'employee:agency' %}">register your agency</a>.
+                            <p>Merci d'ajouter votre agence <a href="{% url 'employee:agency' %}">Ajouter</a>.
                             </p>
                         {% endif %}
                         <div class="row">
                             <div class="col-md-6">
-                                <a href="{% url 'employee:add_car' %}" class="btn btn-primary">Add Car</a>
+                                <a href="{% url 'employee:add_car' %}" class="btn btn-primary">Ajouter une voiture</a>
                             </div>
                             <div class="col-md-6">
-                                <a href="{% url 'employee:cars' %}" class="btn btn-secondary">View Cars</a>
+                                <a href="{% url 'employee:cars' %}" class="btn btn-secondary">Afficher les voitures</a>
                             </div>
 
                         </div>
                         <div class="row mt-3">
                             <div class="col-md-6">
-                                <a href="{% url 'employee:rental_income' %}" class="btn btn-primary">View Rental
-                                    Income</a>
+                                <a href="{% url 'employee:rental_income' %}" class="btn btn-primary">Afficher les revenues</a>
                             </div>
                         </div>
                     </div>
