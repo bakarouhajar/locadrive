@@ -4,12 +4,12 @@
   <div class="container-fluid">
     <div class="row mt-4">
       <div class="col-md-8 offset-md-2">
-        <h1 class="text-center mb-4">Delete Car</h1>
+        <h1 class="text-center mb-4">Supprimer une voiture</h1>
         <form method="post">
           {% csrf_token %}
-          <p>Are you sure you want to delete this car?</p>
-          <button type="submit" class="btn btn-danger">Delete</button>
-          <a href="{% url 'employee:cars' %}" class="btn btn-secondary">Cancel</a>
+          <p>Confirmer l'opération !</p>
+          <button type="submit" class="btn btn-danger">Supprimer</button>
+          <a href="{% url 'employee:cars' %}" class="btn btn-secondary">Annuler</a>
         </form>
       </div>
     </div>

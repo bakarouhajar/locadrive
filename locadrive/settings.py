@@ -80,7 +80,7 @@ WSGI_APPLICATION = "locadrive.wsgi.application"
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'loca_drive',
+        'NAME': 'location',
         'USER': 'root',
         'PASSWORD': '',
         'HOST': 'localhost',

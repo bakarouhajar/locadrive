@@ -16,14 +16,14 @@ class Agency(models.Model):
     address = models.CharField(max_length=200)
     city = models.ForeignKey(City, null=True, on_delete=models.PROTECT)
 
-    def _str_(self):
+    def __str__(self):
         return self.name + ' ' + self.city.name
 
 
 class CarBrand(models.Model):
     name = models.CharField(max_length=100, unique=True)
 
-    def _str_(self):
+    def __str__(self):
         return self.name
 
 
@@ -32,7 +32,7 @@ class CarModel(models.Model):
     car_model_price = models.FloatField()
     car_brand = models.ForeignKey(CarBrand, on_delete=models.PROTECT)
 
-    def _str_(self):
+    def __str__(self):
         return self.name
 
 
@@ -60,7 +60,7 @@ class Car(models.Model):
     agency = models.ForeignKey(Agency, on_delete=models.PROTECT)
     car_model = models.ForeignKey(CarModel, on_delete=models.PROTECT)
 
-    def _str_(self):
+    def __str__(self):
         return str(self.car_model)
 
 
@@ -74,7 +74,7 @@ class Rental(models.Model):
     paid = models.BooleanField(default=False)
     confirmed = models.BooleanField(default=False)
 
-    def _str_(self):
+    def __str__(self):
         return str(self.client.username) + str(self.car.car_model)
 
     def calculate_cost(self):

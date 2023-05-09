@@ -37,18 +37,18 @@
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
                     <a class="nav-link active text-decoration-none" id="nav_rent" href="{% url 'employee:rentals' %}">
-                        Reservations
+                        Réservations
                     </a>
                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link active text-decoration-none" href="{% url 'employee:cars' %}">
-                        My Cars
+                        Voitures
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link active text-decoration-none" href="{% url 'employee:rental_income' %}">
-                        Statistics
+                        Table de bord
                     </a>
                 </li>
             </ul>
@@ -56,7 +56,7 @@
                 {% if user.is_authenticated %}
                     <a class="btn btn-outline-light border border-light border-2 rounded-pill px-4 text-decoration-none"
                        href="{% url 'employee:owner_profile' %}">
-                        My Account
+                        Mon compte
                     </a>
                     <form method="post" action="{% url 'user:logout' %}" class="d-inline">
                         {% csrf_token %}
@@ -67,17 +67,17 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle active text-decoration-none" href="#" id="navbarDropdown"
                            role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Register
+                            S'incrire
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="{% url 'user:clientregister' %}">Register as Client</a>
+                            <li><a class="dropdown-item" href="{% url 'user:clientregister' %}">S'inscrire en tant que client</a>
                             </li>
-                            <li><a class="dropdown-item" href="#">Register as Owner</a></li>
+                            <li><a class="dropdown-item" href="#">S'inscrire en tant que propriétaire</a></li>
                         </ul>
                     </li>
                     <a class="btn btn-light rounded-pill px-4 text-decoration-none"
                        href="{% url 'user:login' %}">
-                        Login
+                        Connexion
                     </a>
                 {% endif %}
             </div>

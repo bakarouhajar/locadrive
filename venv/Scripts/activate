@@ -38,7 +38,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="C:\Users\hp\django_projects\locadrive\venv"
+VIRTUAL_ENV="C:\Users\hp\OneDrive - Ecole Marocaine des Sciences de l'Ingénieur\Documents\locadrive\venv"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"

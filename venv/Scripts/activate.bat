@@ -8,7 +8,7 @@ if defined _OLD_CODEPAGE (
     "%SystemRoot%\System32\chcp.com" 65001 > nul
 )
 
-set VIRTUAL_ENV=C:\Users\hp\django_projects\locadrive\venv
+set VIRTUAL_ENV=C:\Users\hp\OneDrive - Ecole Marocaine des Sciences de l'Ingénieur\Documents\locadrive\venv
 
 if not defined PROMPT set PROMPT=$P$G
 

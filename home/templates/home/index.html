@@ -11,13 +11,17 @@
 <div class="container-fluid" id="b">
 
     <div class="row justify-content-center">
-        <div class="col col-md-12 mt-2" style="text-align: center;">
+        <div class="col col-md-12 " style="text-align: center;">
             <h1 style="padding-left: 50px; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
                 Location de Voiture - Recherche, Comparaison & Économies</h1>
         </div>
+        <div class="col col-md-12 mt-1" style="text-align: center;">
+            <h3 style="padding-left: 50px; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
+                Nous vous livrons votre voiture partout au Maroc</h3>
+        </div>
         <div class="col col-md-12"
             style="text-align: center; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
-            <h5>Annulations gratuites pour la plupart des réservations</h5>
+            <p>Annulations gratuites pour la plupart des réservations</p>
         </div>
     </div>
     <div class="row justify-content-center">
@@ -81,8 +85,8 @@
         <div class="row">
             {% for car in cars %}
                 <div class="col-md-4">
-                    <div class="card mb-4" style="height: 70%; width: 70%; padding-left: 30px;">
-                        <img class="card-img-top" src="{{ car.picture.url }}" width="50px" height="400px"
+                    <div class="card mb-4">
+                        <img class="card-img-top" src="{{ car.picture.url }}" width="400px" height="400px"
                              alt="Car Picture">
                         <div class="card-body">
                             <h5 class="card-title">{{ car.car_model }}</h5>
@@ -98,7 +102,7 @@
                                 <input type="hidden" name="to_date" value="{{ request.POST.to_date }}">
                                 <button class="btn btn-danger " type="submit">Louer</button>
                             {% else %}
-                                <a class="btn btn-danger" href="{% url 'user:login' %}" role="button">Login first</a>
+                                <a class="btn btn-danger" href="{% url 'user:login' %}" role="button">Louer</a>
                             {% endif %}
                             <h5 class="card-title animate_animated animate_bounceIn text-danger">{{ car.car_model.car_model_price|floatformat:2 }}
                                 MAD</h5>
