@@ -8,43 +8,43 @@
         <form method="post" enctype="multipart/form-data">
           {% csrf_token %}
           <div class="form-group">
-            <label for="id_registration_number">Registration Number:</label>
+            <label for="id_registration_number">Numéro:</label>
             {{ form.registration_number }}
           </div>
           <div class="form-group">
-            <label for="id_car_model">Model:</label>
+            <label for="id_car_model">Modele:</label>
             {{ form.car_model}}
           </div>
           <div class="form-group">
-            <label for="id_year">Year:</label>
+            <label for="id_year">Année:</label>
             {{ form.year }}
           </div>
           <div class="form-group">
-            <label for="id_doors">Doors:</label>
+            <label for="id_doors">Nombre de portes:</label>
             {{ form.doors }}
           </div>
           <div class="form-group">
-            <label for="id_seats">Seats:</label>
+            <label for="id_seats">Nombre de places:</label>
             {{ form.seats }}
           </div>
           <div class="form-group form-check">
             <label class="form-check-label">
-              {{ form.ac}} AC
+              {{ form.ac}} Climation
             </label>
           </div>
           <div class="form-group">
-            <label for="id_gearbox">Gearbox:</label>
+            <label for="id_gearbox">Boite de vitesse:</label>
             {{ form.gearbox }}
           </div>
           <div class="form-group">
-            <label for="id_fuel">Fuel:</label>
+            <label for="id_fuel">Carburant:</label>
             {{ form.fuel }}
           </div>
           <div class="form-group">
-            <label for="id_picture">Picture:</label>
+            <label for="id_picture">Photos:</label>
             {{ form.picture }}
           </div>
-          <button type="submit" class="btn btn-primary">Update Car</button>
+          <button type="submit" class="btn btn-primary">Modifer</button>
         </form>
       </div>
     </div>

@@ -10,13 +10,13 @@
         <table class="table table-striped">
             <thead>
             <tr>
-                <th>Car</th>
+                <th>Voiture</th>
                 <th>Client</th>
-                <th>Start Date</th>
-                <th>End Date</th>
-                <th>Cost (MAD)</th>
-                <th>Paid</th>
-                <th>Confirmed</th>
+                <th>Du</th>
+                <th>Au</th>
+                <th>Cout</th>
+                <th>Payé</th>
+                <th>Confirmé</th>
                 <th>Actions</th>
             </tr>
             </thead>
@@ -32,13 +32,13 @@
                     <td>
                         <input type="checkbox" name="paid" class="paid-checkbox"
                                data-rental-id="{{ rental.id }}" {% if rental.paid %}checked{% endif %}
-                               onclick="return confirm('Are you sure you want to update payment status?');">
+                               onclick="return confirm('Modifer?');">
                     </td>
                     <td>
 
                         <input type="checkbox" name="confirmed" class="confirmed-checkbox"
                                data-rental-id="{{ rental.id }}" {% if rental.confirmed %}checked{% endif %}
-                               onclick="return confirm('Are you sure you want to update confirmation status?');">
+                               onclick="return confirm('Modifier?');">
                     </td>
                     <td>
                         <a href="{% url 'employee:detail_car' rental.car.id %}">
@@ -57,12 +57,12 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <p>Name: {{ rental.client.name }}</p>
-                                <p>Phone: {{ rental.client.phone }}</p>
+                                <p>Nom: {{ rental.client.name }}</p>
+                                <p>Téléphone: {{ rental.client.phone }}</p>
                                 <p>Email: {{ rental.client.email }}</p>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
                             </div>
                         </div>
                     </div>

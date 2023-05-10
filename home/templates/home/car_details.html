@@ -8,7 +8,7 @@
           <div class="card-header">
             <div class="d-flex justify-content-between align-items-center">
               <h1 class="mb-0">{{ car.registration_number }}</h1>
-              <a href="{% url 'home:client_rentals' %}" class="btn btn-secondary">Back to Rentals</a>
+              <a href="{% url 'home:client_rentals' %}" class="btn btn-secondary">Locations</a>
             </div>
           </div>
           <div class="card-body">
@@ -17,13 +17,13 @@
                 <img src="{{ car.picture.url }}" alt="{{ car.registration_number }}" class="img-fluid rounded mb-3">
                 <h3>Car Details</h3>
                 <ul class="list-group">
-                  <li class="list-group-item"><strong>Model:</strong> {{ car.car_model }}</li>
-                  <li class="list-group-item"><strong>Year:</strong> {{ car.year }}</li>
-                  <li class="list-group-item"><strong>Doors:</strong> {{ car.doors }}</li>
-                  <li class="list-group-item"><strong>Seats:</strong> {{ car.seats }}</li>
-                  <li class="list-group-item"><strong>AC:</strong> {{ car.ac|yesno:"Yes,No" }}</li>
-                  <li class="list-group-item"><strong>Gearbox:</strong> {{ car.get_gearbox_display }}</li>
-                  <li class="list-group-item"><strong>Fuel:</strong> {{ car.get_fuel_display }}</li>
+                  <li class="list-group-item"><strong>Modèle:</strong> {{ car.car_model }}</li>
+                  <li class="list-group-item"><strong>Année:</strong> {{ car.year }}</li>
+                  <li class="list-group-item"><strong>Nombre de portes:</strong> {{ car.doors }}</li>
+                  <li class="list-group-item"><strong>Nombre de places:</strong> {{ car.seats }}</li>
+                  <li class="list-group-item"><strong>Climatisation:</strong> {{ car.ac|yesno:"Yes,No" }}</li>
+                  <li class="list-group-item"><strong>Boite à vitesse:</strong> {{ car.get_gearbox_display }}</li>
+                  <li class="list-group-item"><strong>Carburant:</strong> {{ car.get_fuel_display }}</li>
                 </ul>
               </div>
             </div>
