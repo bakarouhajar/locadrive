@@ -44,7 +44,7 @@ def index(request):
 def add_car(request):
     if request.user.agency is None:
         # Redirect to a different view, or display an error message
-        messages.error(request, "You need to register your agency first.")
+        messages.error(request, "Vous devez d'abord ajouter votre agence")
         return redirect('employee:agency')
     user = request.user
     if not user.is_authenticated:
@@ -59,7 +59,7 @@ def add_car(request):
         car = form.save(commit=False)
         car.agency = request.user.agency
         car.save()
-        messages.success(request, "Car added successfully!")
+        messages.success(request, "Voiture ajoutée avec succès!")
         return redirect('employee:cars')
     return render(request, 'employee/add_car.html', {'form': form})
 
@@ -67,7 +67,7 @@ def add_car(request):
 def cars(request):
     if request.user.agency is None:
         # Redirect to a different view, or display an error message
-        messages.error(request, "You need to register your agency first.")
+        messages.error(request, "Vous devez d'abord ajouter votre agence")
         return redirect('employee:agency')
     user = request.user
     if not user.is_authenticated:
@@ -90,7 +90,7 @@ def cars(request):
 def rental_income(request, car_id):
     if request.user.agency is None:
         # Redirect to a different view, or display an error message
-        messages.error(request, "You need to register your agency first.")
+        messages.error(request, "Vous devez d'abord ajouter votre agence")
         return redirect('employee:agency')
     car = get_object_or_404(Car, id=car_id)
     rental_income = Rental.objects.filter(car=car, paid=True).aggregate(Sum('rental_price'))
@@ -102,14 +102,14 @@ def rental_income(request, car_id):
 def update_car(request, car_id):
     if request.user.agency is None:
         # Redirect to a different view, or display an error message
-        messages.error(request, "You need to register your agency first.")
+        messages.error(request, "Vous devez d'abord ajouter votre agence.")
         return redirect('employee:agency')
     car = get_object_or_404(Car, id=car_id)
     if request.method == 'POST':
         form = CarForm(request.POST, request.FILES, instance=car)
         if form.is_valid():
             form.save()
-            messages.success(request, "Car has been updated successfully.")
+            messages.success(request, "Midifiée avec succés.")
             return redirect('employee:cars')
     else:
         form = CarForm(instance=car)
@@ -123,7 +123,7 @@ def update_car(request, car_id):
 def delete_car(request, car_id):
     if request.user.agency is None:
         # Redirect to a different view, or display an error message
-        messages.error(request, "You need to register your agency first.")
+        messages.error(request, "Vous devez d'abord ajouter votre agence.")
         return redirect('employee:agency')
     car = get_object_or_404(Car, id=car_id)
     if request.method == 'POST':
@@ -139,7 +139,7 @@ def delete_car(request, car_id):
 def detail_car(request, car_id):
     if request.user.agency is None:
         # Redirect to a different view, or display an error message
-        messages.error(request, "You need to register your agency first.")
+        messages.error(request, "Vous devez d'abord ajouter votre agencet.")
         return redirect('employee:agency')
     car = get_object_or_404(Car, id=car_id)
     context = {'car': car}
@@ -150,14 +150,14 @@ def detail_car(request, car_id):
 def rentals(request):
     if request.user.agency is None:
         # Redirect to a different view, or display an error message
-        messages.error(request, "You need to register your agency first.")
+        messages.error(request, "Vous devez d'abord ajouter votre agence.")
         return redirect('employee:agency')
     user = request.user
     if not user.is_authenticated:
         return redirect('user:login')
     user_roles = get_custom_user_roles(request.user.id)
     if not user_roles['is_owner']:
-        messages.error(request, "You are not authorized to access this page.")
+        messages.error(request, "Vous n'avez pas accés à cette page.")
         return redirect('home:index')
 
     agency = user.agency
@@ -176,7 +176,7 @@ def rentals(request):
 def update_rental(request):
     if request.user.agency is None:
         # Redirect to a different view, or display an error message
-        messages.error(request, "You need to register your agency first.")
+        messages.error(request, "Vous devez d'abord ajouter votre agence.")
         return redirect('employee:agency')
     rental_id = request.POST.get('rental_id')
     is_paid = request.POST.get('is_paid') == 'true'
@@ -187,14 +187,14 @@ def update_rental(request):
     rental.confirmed = is_confirmed
     rental.save()
 
-    return JsonResponse({'success': 'Rental updated successfully'})
+    return JsonResponse({'success': 'Modifié avec succés'})
 
 
 @login_required
 def rental_income(request):
     if request.user.agency is None:
         # Redirect to a different view, or display an error message
-        messages.error(request, "You need to register your agency first.")
+        messages.error(request, "Vous devez d'abord ajouter votre agence.")
         return redirect('employee:agency')
     agency = request.user.agency
     rentals = Rental.objects.filter(car__agency=agency, paid=True)
@@ -238,14 +238,14 @@ def owner_profile(request):
 def detail_client(request, client_id):
     if request.user.agency is None:
         # Redirect to a different view, or display an error message
-        messages.error(request, "You need to register your agency first.")
+        messages.error(request, "Vous devez d'abord ajouter votre agence.")
         return redirect('employee:agency')
     user = request.user
     if not user.is_authenticated:
         return redirect('user:login')
     user_roles = get_custom_user_roles(request.user.id)
     if not user_roles['is_owner']:
-        messages.error(request, "You are not authorized to access this page.")
+        messages.error(request, "Vous n'avez pas accés !.")
         return redirect('home:index')
     client = get_object_or_404(CustomUser, id=client_id)
     context = {'client': client}
